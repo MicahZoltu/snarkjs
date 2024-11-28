@@ -17,7 +17,8 @@
     zksnark JavaScript library. If not, see <https://www.gnu.org/licenses/>.
 */
 
-const chai = require("chai");
+const assert = require("node:assert");
+const { describe, it } = require("node:test");
 const fs = require("fs");
 const path = require("path");
 const bigInt = require("../src/bigint.js");
@@ -35,11 +36,8 @@ const PolF = new PolField(new ZqField(bn128.r));
 const G1 = bn128.G1;
 const G2 = bn128.G2;
 
-const assert = chai.assert;
-
-
 describe("zkSnark original", () => {
-    it("Load a circuit, create trusted setup, create a proof and validate it", () => {
+    it("Load a circuit, create trusted setup, create a proof and validate it", { timeout: 10000000 }, () => {
 
 
         const cirDef = JSON.parse(fs.readFileSync(path.join(__dirname, "circuit", "sum.json"), "utf8"));
@@ -163,7 +161,7 @@ describe("zkSnark original", () => {
 //        assert(G1.equals(gA, proof.pi_a));
 */
         assert( zkSnark.isValid(setup.vk_verifier, proof, publicSignals));
-    }).timeout(10000000);
+    });
 /*
     it("validate sha256_2", () => {
 
@@ -190,7 +188,7 @@ describe("zkSnark original", () => {
 
         console.log("Start verifiying: "+ Date().toString());
         assert( zkSnark.isValid(setup.vk_verifier, proof, publicSignals));
-    }).timeout(10000000);
+    });
 */
 
 });

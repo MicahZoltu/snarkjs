@@ -17,17 +17,16 @@
     zksnark JavaScript library. If not, see <https://www.gnu.org/licenses/>.
 */
 
-const chai = require("chai");
+const assert = require("node:assert");
+const { describe, it } = require("node:test");
 const fs = require("fs");
 const path = require("path");
 
 const Circuit = require("../src/circuit.js");
 const zkSnark = require("../index.js").groth;
 
-const assert = chai.assert;
-
 describe("zkSnark Groth", () => {
-    it("Load a circuit, create trusted setup, create a proof and validate it", () => {
+    it("Load a circuit, create trusted setup, create a proof and validate it", { timeout: 10000000 }, () => {
 
 
         const cirDef = JSON.parse(fs.readFileSync(path.join(__dirname, "circuit", "sum.json"), "utf8"));
@@ -40,5 +39,5 @@ describe("zkSnark Groth", () => {
         const {proof, publicSignals} = zkSnark.genProof(setup.vk_proof, witness);
 
         assert( zkSnark.isValid(setup.vk_verifier, proof, publicSignals));
-    }).timeout(10000000);
+    });
 });

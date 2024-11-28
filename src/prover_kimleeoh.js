@@ -22,7 +22,7 @@
 const BN128 = require("./bn128.js");
 const PolField = require("./polfield.js");
 const ZqField = require("./zqfield.js");
-const createKeccakHash = require("keccak");
+const nobleHashes = require("@noble/hashes/sha3");
 const bigInt = require("./bigint");
 
 const bn128 = new BN128();
@@ -97,8 +97,8 @@ module.exports = function genProof(vk_proof, witness) {
         proof.pi_b[1][1].beInt2Buff(32)
     ]);
 
-    const h1buff = createKeccakHash("keccak256").update(buff).digest();
-    const h2buff = createKeccakHash("keccak256").update(h1buff).digest();
+    const h1buff = nobleHashes.keccak_256(buff);
+    const h2buff = nobleHashes.keccak_256(h1buff);
 
     const h1 = bigInt.beBuff2int(h1buff);
     const h2 = bigInt.beBuff2int(h2buff);

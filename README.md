@@ -1,3 +1,9 @@
+# Fork Details
+This is a Fork of the version of the snarkjs library that was used in the Tornado Classic UI prior to it being illegally sanctioned and developers unjustly arrested.  The only changes are to make it easier to build for browser and reduce dependency tree.  You can see the full set of changes at https://github.com/tornadocash/snarkjs/compare/master...MicahZoltu:snarkjs:master
+
+Original README.md follows.
+
+
 # snarkjs: JavaScript implementation of zkSNARKs.
 
 This is a JavaScript implementation of zkSNARK schemes. It allows the original 8points protocol

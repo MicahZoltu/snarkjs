@@ -17,7 +17,8 @@
     zksnark JavaScript library. If not, see <https://www.gnu.org/licenses/>.
 */
 
-const chai = require("chai");
+const assert = require("node:assert");
+const { describe, it } = require("node:test");
 
 const bigInt = require("../src/bigint.js");
 const ZqField = require("../src/zqfield.js");
@@ -26,8 +27,6 @@ const RatField = require("../src/ratfield.js");
 const q  = bigInt("21888242871839275222246405745257275088548364400416034343698204186575808495617");
 const Z = new ZqField(q);
 const R = new RatField(Z);
-
-const assert = chai.assert;
 
 function r(a,b) {
     return [bigInt(a), bigInt(b)];

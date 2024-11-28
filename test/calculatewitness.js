@@ -17,15 +17,15 @@
     zksnark JavaScript library. If not, see <https://www.gnu.org/licenses/>.
 */
 
-const chai = require("chai");
+const assert = require("node:assert");
+const { describe, it } = require("node:test");
+
 const fs = require("fs");
 const path = require("path");
 
 const Circuit = require("../src/circuit.js");
 const BN128 = require("../src/bn128.js");
 const F1Field = require("../src/zqfield.js");
-
-const assert = chai.assert;
 
 
 describe("Calculate witness", () => {

@@ -17,13 +17,12 @@
     zksnark JavaScript library. If not, see <https://www.gnu.org/licenses/>.
 */
 
-const chai = require("chai");
+const assert = require("node:assert");
+const { describe, it } = require("node:test");
 
 const bigInt = require("../src/bigint.js");
 const PolField = require("../src/polfield.js");
 const ZqField = require("../src/zqfield");
-
-const assert = chai.assert;
 
 const r  = bigInt("21888242871839275222246405745257275088548364400416034343698204186575808495617");
 
@@ -108,7 +107,7 @@ describe("Polynomial field", () => {
 
         assert(PF.equals(a, d));
     });
-    it("Should div random big", () => {
+    it("Should div random big", { timeout: 10000 }, () => {
         const PF = new PolField(new ZqField(r));
 
         const a = [];
@@ -121,7 +120,7 @@ describe("Polynomial field", () => {
         const d = PF.div(c,b);
 
         assert(PF.equals(a, d));
-    }).timeout(10000);
+    });
     it("Should evaluate and zero", () => {
         const PF = new PolField(new ZqField(r));
         const p = [PF.F.neg(bigInt(2)), bigInt(1)];

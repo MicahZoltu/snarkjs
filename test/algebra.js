@@ -17,14 +17,12 @@
     zksnark JavaScript library. If not, see <https://www.gnu.org/licenses/>.
 */
 
-const chai = require("chai");
+const assert = require("node:assert");
+const { describe, it } = require("node:test");
 
 const bigInt = require("../src/bigint.js");
 const BN128 = require("../src/bn128.js");
 const F1Field = require("../src/zqfield.js");
-
-const assert = chai.assert;
-
 
 describe("F1 testing", () => {
     it("Should compute euclidean", () => {
@@ -184,8 +182,8 @@ describe("F12 testing", () => {
 });
 
 describe("Pairing", () => {
-/*
-    it("Should match pairing", () => {
+
+    it("Should match pairing", { timeout: 10000 }, () => {
         for (let i=0; i<1; i++) {
             const bn128 = new BN128();
 
@@ -209,9 +207,9 @@ describe("Pairing", () => {
 
             assert(bn128.F12.equals(res, bn128.F12.one));
         }
-    }).timeout(10000);
-*/
-    it("Should generate another pairing pairing", () => {
+    });
+
+    it("Should generate another pairing pairing", { timeout: 10000 }, () => {
         for (let i=0; i<1; i++) {
             const bn128 = new BN128();
 
@@ -250,5 +248,5 @@ describe("Pairing", () => {
 
             assert(bn128.F12.equals(res, bn128.F12.one)); */
         }
-    }).timeout(10000);
+    });
 });
